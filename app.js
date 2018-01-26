@@ -63,8 +63,21 @@ function viewCart() {
   var currentCart = JSON.parse(localStorage.shopCart);
   console.log(table);
   var rowEl = document.createElement('tr');
+  
   var dataEl = document.createElement('td');
   dataEl.textContent = currentCart[1].quantity1;
+  rowEl.appendChild(dataEl);
+
+  dataEl = document.createElement('td');
+  dataEl.textContent = currentCart[1].alt;
+  rowEl.appendChild(dataEl);
+
+  dataEl = document.createElement('td');
+  dataEl.textContent = currentCart[1].price;
+  rowEl.appendChild(dataEl);
+
+  dataEl = document.createElement('td');
+  dataEl.textContent = currentCart[1].fileP;
   rowEl.appendChild(dataEl);
   table.appendChild(rowEl);
   
