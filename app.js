@@ -32,7 +32,10 @@ function generate(){
   }
 }
 // on click it's adding to the cart
-storeForm.addEventListener('submit', addToCart);
+if(storeForm){
+  storeForm.addEventListener('submit', addToCart);
+}
+
 
 //takes items and stores them into local storage
 // function localStorage(){
@@ -41,21 +44,30 @@ storeForm.addEventListener('submit', addToCart);
 function addToCart(event){
   event.preventDefault(); //keeps the browser from removing the data on refresh.
   var product = event.target.product.value; //passes in the value of the event.
-  var quantity = event.target.quantity.value;
+  var quantity = event.target.quantity.valueAsNumber;
+ 
   //checking the value of the variables above, if it matches it'll run through the array and log the quantity.
   for(var i = 0; i < Products.allproduct.length; i++){
     if(product === Products.allproduct[i].alt){
-      Products.allproduct[i].quantity1 = quantity;
+      Products.allproduct[i].quantity1 += quantity;
     } 
   }
-  console.log(Products.allproduct);
+  var currentCart = JSON.stringify(Products.allproduct);
+  localStorage.setItem('shopCart',currentCart);
+  storeForm.reset();
 }
 generate();
+
 
 //take input of value and store in local storage.
 
 //create a button that goes to cart.
 
 //pull the data from the local storage and create a table.
+localStorage.shopCart;
 
-//
+function viewCart() {
+  var currentCart = JSON.parse(localStorage.shopCart);
+  console.log(currentCart);
+}
+
