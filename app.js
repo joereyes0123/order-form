@@ -35,7 +35,7 @@ function generate(){
 //takes items and stores them into local storage
 // function localStorage(){
 
-//adds event to the cart 
+//adds event to the cart
 function addToCart(event){
   event.preventDefault(); //keeps the browser from removing the data on refresh.
   var product = event.target.product.value; //passes in the value of the event.
@@ -61,26 +61,29 @@ var table = document.getElementById('cart');
 
 function viewCart() {
   var currentCart = JSON.parse(localStorage.shopCart);
-  console.log(table);
-  var rowEl = document.createElement('tr');
   
-  var dataEl = document.createElement('td');
-  dataEl.textContent = currentCart[1].quantity1;
-  rowEl.appendChild(dataEl);
+  for(var i = 0; i < currentCart.length; i++) {
+    var rowEl = document.createElement('tr');
+    var dataEl = document.createElement('td');
+    dataEl.textContent = currentCart[i].quantity1;
+    rowEl.appendChild(dataEl);
 
-  dataEl = document.createElement('td');
-  dataEl.textContent = currentCart[1].alt;
-  rowEl.appendChild(dataEl);
+    dataEl = document.createElement('td');
+    dataEl.textContent = currentCart[i].alt;
+    rowEl.appendChild(dataEl);
 
-  dataEl = document.createElement('td');
-  dataEl.textContent = currentCart[1].price;
-  rowEl.appendChild(dataEl);
+    dataEl = document.createElement('td');
+    dataEl.textContent = currentCart[i].price;
+    rowEl.appendChild(dataEl);
 
-  dataEl = document.createElement('td');
-  dataEl.textContent = currentCart[1].fileP;
-  rowEl.appendChild(dataEl);
-  table.appendChild(rowEl);
-  
+    dataEl = document.createElement('td');
+    var image = document.createElement('img');
+    image.src = currentCart[i].fileP;
+    rowEl.appendChild(dataEl);
+    dataEl.appendChild(image);
+    table.appendChild(rowEl);
+  }  
+
 }
 
 // on click it's adding to the cart
