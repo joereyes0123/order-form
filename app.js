@@ -3,7 +3,7 @@
 //Declearing multiple variables to construct object names of the images.
 var namesA = ['bag','banana','bathroom','boots','breakfast','bubblegum','chair','cthulhu','dog-duck','dragon','pen','pet-sweep','scissors','shark','sweep','tauntaun','unicorn','usb','water-can','wine-glass'];
 
-// var itemList = document.getElementById('itemList');
+var itemList = document.getElementById('itemList');
 //accessing the form itself from the HTML
 var storeForm = document.getElementById('Buy');
 
@@ -31,11 +31,6 @@ function generate(){
     itemList.appendChild(optionList);
   }
 }
-// on click it's adding to the cart
-if(storeForm){
-  storeForm.addEventListener('submit', addToCart);
-}
-
 
 //takes items and stores them into local storage
 // function localStorage(){
@@ -56,18 +51,29 @@ function addToCart(event){
   localStorage.setItem('shopCart',currentCart);
   storeForm.reset();
 }
-generate();
-
 
 //take input of value and store in local storage.
 
 //create a button that goes to cart.
 
 //pull the data from the local storage and create a table.
-localStorage.shopCart;
+var table = document.getElementById('cart');
 
 function viewCart() {
   var currentCart = JSON.parse(localStorage.shopCart);
-  console.log(currentCart);
+  console.log(table);
+  var rowEl = document.createElement('tr');
+  var dataEl = document.createElement('td');
+  dataEl.textContent = currentCart[1].quantity1;
+  rowEl.appendChild(dataEl);
+  table.appendChild(rowEl);
+  
 }
 
+// on click it's adding to the cart
+if(storeForm){
+  storeForm.addEventListener('submit', addToCart);
+  generate();
+} else {
+  viewCart();
+}
